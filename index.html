@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#8a1c1c">
+<title>Карточки по билетам</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#f6f1ea;color:#161616;font:16px/1.45 -apple-system,Helvetica,Arial,sans-serif}
+#app{max-width:640px;margin:0 auto;height:100%;height:100dvh;display:flex;flex-direction:column;padding:max(12px,env(safe-area-inset-top)) 14px max(12px,env(safe-area-inset-bottom))}
+h1{font-size:22px;margin:8px 0 14px}h2{font-size:18px;margin:4px 0}
+button{font:inherit;border:0;border-radius:14px;padding:13px 16px;background:#fff;color:#161616;box-shadow:0 1px 4px #0002;cursor:pointer}
+button:disabled{opacity:.4;cursor:default}
+.primary{background:#8a1c1c;color:#fff}
+.list{overflow:auto;display:flex;flex-direction:column;gap:9px;padding:2px}
+.item{text-align:left;display:flex;gap:12px;align-items:center;flex:none}
+.item b{min-width:30px;color:#8a1c1c}.item span{flex:1}.item small{color:#666;display:block}
+.item.none{background:transparent;box-shadow:none;border:1px dashed #aaa;color:#777}
+.top{display:flex;gap:10px;align-items:center}.top button{padding:8px 13px}
+.top .t{flex:1;font-size:14px;color:#555}
+.bar{height:7px;background:#0001;border-radius:9px;margin:10px 0}.bar i{display:block;height:100%;background:#8a1c1c;border-radius:9px}
+.stage{flex:1;min-height:0;position:relative}
+.card{position:absolute;inset:0;background:#fff;border-radius:20px;box-shadow:0 6px 24px #0002;display:flex;flex-direction:column;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.card .q{padding:14px 18px;color:#8a1c1c;font-weight:700;border-bottom:1px solid #0001}
+.card.front{justify-content:center;text-align:center;cursor:pointer}
+.card.front .q{border:0;font-size:23px;padding:24px}
+.hint{color:#888;font-size:14px;padding:0 20px}
+.ans{overflow:auto;padding:6px 18px 24px;flex:1;overflow-wrap:break-word}
+.badge{position:absolute;top:60px;padding:6px 14px;border:3px solid;border-radius:10px;font-weight:800;opacity:0;pointer-events:none;background:#fff}
+.badge.r{left:18px;color:#1d7a3a;transform:rotate(-12deg)}.badge.l{right:18px;color:#b3261e;transform:rotate(12deg)}
+.actions{display:flex;gap:10px;margin-top:12px}.actions button{flex:1;font-weight:700}
+.no{color:#b3261e}.yes{color:#1d7a3a}.actions .undo{flex:0 0 58px}
+.done{margin:auto 0;text-align:center;display:flex;flex-direction:column;gap:14px}
+.big{font-size:52px;font-weight:800;color:#8a1c1c}
+/* оформление ответов, как в PDF */
+.y{color:#8a6500}.f{text-align:center;margin:10px 0;overflow-x:auto;padding:2px 0}
+.f.key{border:1.5px solid #111;padding:6px 10px}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.3}
+.fr>span{padding:0 4px;white-space:nowrap}.fr .d{border-top:1.4px solid currentColor}
+.c{white-space:nowrap}.ix{display:inline-flex;flex-direction:column;vertical-align:middle;font-size:65%;line-height:1.1;margin-left:1px}.ix sup,.ix sub{position:static;font-size:100%;display:block;text-align:left}
+sup,sub{line-height:0}.tl{line-height:1.75}.sum{font-size:20px}
+.sx{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;margin:8px auto;font-size:14px}td{border:1px solid #777;padding:3px 8px;text-align:center}table.small{font-size:12px}table.small td{padding:2px 5px}
+.pic{text-align:center;margin:8px 0}.crop,.pic svg{max-width:100%;height:auto}
+.card .y{color:#8a6500}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="cards.js"></script>
+<script src="logic.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>
